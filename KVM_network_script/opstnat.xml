@@ -1,0 +1,15 @@
+<network>
+  <name>opstnat</name>
+  <forward mode="nat"/>
+  <bridge name="virbr10" stp="off" delay="0"/>
+  <ip address="192.168.100.1" netmask="255.255.255.0">
+    <dhcp>
+      <range start="192.168.100.100" end="192.168.100.200"/>
+    </dhcp>
+  </ip>
+  <forward>
+    <nat>
+      <port start='9090' end='9090' protocol='tcp' to='192.168.100.101' toport='80'/>
+    </nat>
+  </forward>
+</network>
