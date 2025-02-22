@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["sh", "-c", "echo Hello from $(hostname); sleep 3600"]
+      nodeSelector:
+        node-role.kubernetes.io/worker: ""
