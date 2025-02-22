@@ -1,0 +1,17 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: wwwm-spring-be-ip-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.100.230-192.168.100.250
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: wwwm-spring-be-advertisement
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - wwwm-spring-be-ip-pool
