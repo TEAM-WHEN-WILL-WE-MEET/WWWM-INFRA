@@ -1,0 +1,29 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: wwwm-spring-be-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: wwwm-spring-be-deployment
+  # HPA는 급격하게 Pod 개수를 늘리지 않고
+  # 현재 상태를 지속적으로 모니터링하여 점진적이고 순차적으로 Pod를 확장 또는 축소
+  minReplicas: 2
+  maxReplicas: 5
+  # CPU나 메모리의 사용률은 각 Pod의 리소스 requests 값 대비 평균 사용량
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        # CPU 사용률 80% 이상일 때 scaling
+        averageUtilization: 80
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        # 메모리 사용률 80% 이상일 때 scaling
+        averageUtilization: 80
