@@ -13,7 +13,7 @@ spec:
         app: wwwm-spring-be
     spec:
       # master 노드의 NoSchedule taint를 허용
-      # 미상의 원인으로 Worker Node를 위한 Openstack Instance가 중지되는 문제 일시적 조치치
+      # 미상의 원인으로 Worker Node를 위한 Openstack Instance가 중지되는 문제 일시적 조치
       tolerations:
       - key: "node-role.kubernetes.io/control-plane"
         operator: "Exists"
