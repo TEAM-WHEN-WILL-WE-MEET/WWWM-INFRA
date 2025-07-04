@@ -1,0 +1,67 @@
+controller:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+
+server:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+  service:
+    type: NodePort
+    nodePortHttp: 30808
+    nodePortHttps: 30809 # HTTPS (K3s, K8s 30443 포트 충돌 방지)
+
+repoServer:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
+redis:
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
+# 사용하지 않는 컴포넌트 비활성화
+applicationSet:
+  enabled: false
+
+dex:
+  enabled: false
+
+metrics:
+  server:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 50m
+        memory: 64Mi
+
+# 아래 설정이 있으면 HTTP로만 서비스하고 TLS 리다이렉트를 비활성화
+configs:
+  params:
+    # Helm Chart v6 이후부터는
+    # configs.params 블록을 아래와 같은 형태가 아니면 해석하지 못함함
+    create: true          # 반드시 선언
+    server.insecure: true # dotted key 그대로
