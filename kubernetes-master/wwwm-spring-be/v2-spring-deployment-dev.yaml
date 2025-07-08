@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wwwm-spring-be-v2-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wwwm-spring-be-v2-dev
+  template:
+    metadata:
+      labels:
+        app: wwwm-spring-be-v2-dev
+    spec:
+      containers:
+      - name: wwwm-spring-be-v2-dev
+        image: judemin/wwwm-spring-be:latest
+        # 이미지 Pull 정책을 명시적으로 설정하여 항상 최신 이미지를 사용하도록 보장
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "500Mi"
+          limits:
+            cpu: "800m"
+            memory: "800Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wwwm-spring-be-v2-dev
+  labels:
+    app: wwwm-spring-be-v2-dev
+spec:
+  type: NodePort
+  selector:
+    app: wwwm-spring-be-v2-dev
+  ports:
+    - name: port8080
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30081

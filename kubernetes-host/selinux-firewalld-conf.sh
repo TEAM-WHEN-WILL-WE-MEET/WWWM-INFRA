@@ -11,4 +11,9 @@ sudo firewall-cmd --reload
 ### ArgoCD
 sudo semanage port -a -t http_port_t -p tcp 30909
 sudo firewall-cmd --add-port=30909/tcp --permanent
+sudo firewall-cmd --reload\
+
+### v2-spring-be-dev
+sudo semanage port -a -t http_port_t -p tcp 8082
+sudo firewall-cmd --add-port=8081/tcp --permanent
 sudo firewall-cmd --reload
