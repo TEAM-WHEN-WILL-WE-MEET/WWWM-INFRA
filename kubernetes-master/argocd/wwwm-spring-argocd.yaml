@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wwwm-spring-be
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/TEAM-WHEN-WILL-WE-MEET/WWWM-INFRA.git'
+    targetRevision: main
+    path: kubernetes-master/wwwm-spring-be
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
