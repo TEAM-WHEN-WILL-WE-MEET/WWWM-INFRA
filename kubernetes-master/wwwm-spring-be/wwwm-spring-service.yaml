@@ -4,7 +4,7 @@ metadata:
   name: wwwm-spring-be-service
 spec:
   selector:
-    app: wwwm-spring-be
+    app: wwwm-spring-be-v2
   ports:
     - protocol: TCP
       port: 8080
