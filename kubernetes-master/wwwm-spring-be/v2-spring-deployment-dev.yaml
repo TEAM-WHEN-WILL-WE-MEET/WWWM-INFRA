@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: wwwwm-spring-be-v2
+        app: wwwm-spring-be-v2
     spec:
       containers:
       - name: wwwm-spring-be-v2
