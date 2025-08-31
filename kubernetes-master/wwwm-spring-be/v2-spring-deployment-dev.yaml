@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: wwwm-spring-be-v2
-        image: judemin/wwwm-spring-be:68a7e54
+        image: judemin/wwwm-spring-be:55e2dd4
         # 이미지 Pull 정책을 명시적으로 설정하여 항상 최신 이미지를 사용하도록 보장
         imagePullPolicy: Always
         ports:
